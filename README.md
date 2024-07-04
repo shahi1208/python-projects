@@ -67,7 +67,7 @@ X OR Y? X
 calculator is closed.
 ```
 
-# [Terminal Level Cookbook]((https://github.com/shahi1208/python-projects/blob/main/recipe.py))
+# [Terminal Level Cookbook](https://github.com/shahi1208/python-projects/blob/main/recipe.py)
 
 This script allows users to manage recipes in a simple cookbook application. It provides functionality to add new recipes and find existing recipes based on available ingredients. The recipes are stored in a JSON file.
 
