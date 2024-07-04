@@ -67,3 +67,169 @@ X OR Y? X
 calculator is closed.
 ```
 
+# [Terminal Level Cookbook]((https://github.com/shahi1208/python-projects/blob/main/recipe.py))
+
+This script allows users to manage recipes in a simple cookbook application. It provides functionality to add new recipes and find existing recipes based on available ingredients. The recipes are stored in a JSON file.
+
+## Features
+
+- **Recipe Management:** Add and retrieve recipes from a JSON file.
+- **Ingredient Matching:** Find recipes based on available ingredients.
+- **User Interaction:** Simple command-line interface for user input.
+
+## Code Overview
+
+### Importing Required Modules
+
+```python
+import json
+```
+
+### Display Recipes Function
+
+```python
+def display_recipes(best_recipe):
+    if len(best_recipe) > 1:
+        print('We found multiple recipes for you!\n')
+        cnt = 1
+        for recipe in best_recipe:
+            print(f"Recipe {cnt}: {recipe['name']}\n")
+            print("Ingredients:".upper(), recipe['Ingredients'])
+            print("\nInstructions:\n".upper())
+            print(recipe['Instruction'].capitalize())
+            print()
+            print(' - ' * 30)
+            cnt += 1
+    elif best_recipe:
+        print("\nBest Recipe:".upper(), best_recipe[0]['name'].capitalize())
+        print("\nIngredients:".upper(), best_recipe[0]['Ingredients'])
+        print("\nInstructions:\n".upper())
+        print(best_recipe[0]['Instruction'].capitalize())
+    else:
+        print('\nNo matching recipe found')
+```
+
+### Adding a Recipe
+
+```python
+def add_recipe(recipe):
+    with open('recipes.json', 'w') as f:
+        json.dump(recipe, f, indent=4)
+```
+
+### Pulling Recipes
+
+```python
+def pull_recipes(filename="recipes.json"):
+    try:
+        with open(filename, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+```
+
+### Finding Recipes
+
+```python
+def find_recipes(all_recipes, Ingredients):
+    best_recipe = []
+    max_matched = 0
+
+    for recipe in all_recipes:
+        existing_ingredients = set(recipe['Ingredients'])
+        match_cnt = len(existing_ingredients.intersection(Ingredients))
+
+        if match_cnt >= max_matched and match_cnt != 0:
+            max_matched = match_cnt
+            best_recipe.append(recipe)
+    return best_recipe
+```
+
+### User Entry
+
+```python
+def user_entry():
+    new_recipe_name = input("What's the recipe name?")
+    new_recipe_ingredients = input('Give ingredients list (Use comma to separate):').split(',')
+    new_recipe_ingredients = [i.strip() for i in new_recipe_ingredients]
+    new_recipe_intructions = input('Give a description on how to cook this recipe:')
+    new_recipe = {
+        "name": new_recipe_name,
+        "Ingredients": new_recipe_ingredients,
+        "Instruction": new_recipe_intructions
+    }
+    return new_recipe
+```
+
+### Main Function
+
+```python
+def main():
+    print('Welcome to the cookbook.')
+    print('Click N to add a new recipe. Click O to find an old recipe.')
+    print('Press X to exit')
+    x = input('N or O?').strip().lower()
+    while x in ('n', 'o'):
+        if x == 'n':
+            old_recipes = pull_recipes()
+            new_recipe = user_entry()
+            old_recipes.append(new_recipe)
+            add_recipe(old_recipes)
+            x = input('What do you want to do now? (N or O)').strip().lower()
+        elif x == 'o':
+            print('\nMention the ingredients you have.')
+            ingredients_in_fridge = input('Give ingredients list (Use comma to separate):').strip().split(',')
+            ingredients_in_fridge = [i.strip() for i in ingredients_in_fridge]
+            existing_recipes = pull_recipes()
+            if existing_recipes and ingredients_in_fridge:
+                best_recipe = find_recipes(existing_recipes, ingredients_in_fridge)
+                display_recipes(best_recipe)
+            else:
+                print('\nNo recipes or ingredients found')
+            x = input('What do you want to do now? (N or O)').strip().lower()
+
+if __name__ == "__main__":
+    main()
+```
+
+## Usage
+
+1. **Run the script:** `python recipe.py`
+2. **Add a new recipe:** Press `N` and follow the prompts.
+3. **Find an existing recipe:** Press `O` and enter the ingredients you have.
+4. **Exit the script:** Press `X`.
+
+## Example Usage
+
+### Adding a New Recipe
+
+```
+Welcome to the cookbook.
+Click N to add a new recipe. Click O to find an old recipe.
+Press X to exit
+N or O? n
+
+What's the recipe name? Spaghetti Bolognese
+Give ingredients list (Use comma to separate): spaghetti, ground beef, tomato sauce, onion, garlic, olive oil, salt, pepper
+Give a description on how to cook this recipe: Cook the spaghetti. In another pan, cook the ground beef with onion and garlic. Add tomato sauce and simmer. Mix with spaghetti and serve.
+
+What do you want to do now? (N or O) o
+```
+
+### Finding a Recipe
+
+```
+Mention the ingredients you have.
+Give ingredients list (Use comma to separate): spaghetti, tomato sauce, garlic
+
+We found multiple recipes for you!
+
+Recipe 1: Spaghetti Bolognese
+
+INGREDIENTS: ['spaghetti', 'ground beef', 'tomato sauce', 'onion', 'garlic', 'olive oil', 'salt', 'pepper']
+
+INSTRUCTIONS:
+Cook the spaghetti. In another pan, cook the ground beef with onion and garlic. Add tomato sauce and simmer. Mix with spaghetti and serve.
+
+ - - - - - - - - - - - - - - - - - - - - - - - - - - 
+```
