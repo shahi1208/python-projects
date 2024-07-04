@@ -1,6 +1,6 @@
 # python-projects
 
-# [Simple Python Calculator-Beginner level](https://github.com/shahi1208/python-projects/blob/main/calculator.py)
+# [Simple Python Calculator-Beginner level](https://github.com/shahi1208/python-projects/blob/main/calculator.py#link-1)
 
 This Python script implements a basic calculator with support for addition, subtraction, multiplication, and division operations. It handles input validation, ensuring the user enters valid operators and numbers. If division by zero is attempted, the program prompts the user to enter a new denominator.
 
