@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Suggestor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome to the Recipe Suggestor</h1>
+    <form action="{{ url_for('search') }}" method="POST">
+        <label for="ingredients">Enter ingredients (comma-separated):</label>
+        <input type="text" id="ingredients" name="ingredients" required>
+        <button type="submit">Search Recipes</button>
+    </form>
+    {% if recipes %}
+        <h2>Found Recipes</h2>
+        {% for index, recipe in enumerate(recipes) %}
+            <div class="recipe">
+                <h3>{{ recipe['name'] }}</h3>
+                <p><strong>Ingredients:</strong> {{ recipe['Ingredients'] }}</p>
+                <p><strong>Instructions:</strong> {{ recipe['Instruction'] }}</p>
+                <br>
+                <a href="{{ url_for('edit', index=index) }}">Edit</a>
+            </div>
+        {% endfor %}
+    {% elif message %}
+        <p>{{ message }}</p>
+    {% endif %}
+    <br>
+    <a href="{{ url_for('add') }}">Add a new recipe</a>
+</body>
+</html>

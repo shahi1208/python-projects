@@ -1,0 +1,38 @@
+[
+    {
+        "name": "dosa",
+        "Ingredients": [
+            "Dosa batter",
+            "Salt",
+            "Water"
+        ],
+        "Instruction": "learn it"
+    },
+    {
+        "name": "Spicy fried chicken",
+        "Ingredients": [
+            "Chicken pieces",
+            "Buttermilk",
+            "Salt",
+            "Black pepper",
+            "Paprika",
+            "Garlic powder",
+            "Onion powder",
+            "Cayenne pepper (optional)",
+            "Flour",
+            "Cornstarch",
+            "Baking powder (optional)",
+            "Eggs",
+            "Water (or buttermilk)",
+            "Oil (vegetable",
+            "Canola",
+            "Or peanut oil)",
+            "Hot sauce (optional)",
+            "Herbs (thyme",
+            "Oregano",
+            "Or rosemary",
+            "Optional)"
+        ],
+        "Instruction": "look at this website \"https://www.allrecipes.com/recipe/8805/crispy-fried-chicken/\""
+    }
+]
