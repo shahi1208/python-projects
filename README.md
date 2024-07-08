@@ -67,7 +67,7 @@ X OR Y? X
 calculator is closed.
 ```
 
-# Virtual pet game
+# [Virtual Pet Game (Moderate)](https://github.com/shahi1208/python-projects/blob/main/virtual_pet.py)
 
 This Python script implements a virtual pet game where users can create pets, interact with them, and manage multiple pets through a menu-driven interface. Pets have moods that change based on user interactions (feeding, playing, resting). The script utilizes object-oriented programming principles with a Pets class defining pet attributes and behaviors.
 
@@ -150,7 +150,7 @@ Thanks for playing! Goodbye!
 
 ```
 
-# [Terminal Level Cookbook](https://github.com/shahi1208/python-projects/blob/main/recipe.py)
+# [Terminal Level Cookbook (Moderate)](https://github.com/shahi1208/python-projects/blob/main/recipe.py)
 
 This script allows users to manage recipes in a simple cookbook application. It provides functionality to add new recipes and find existing recipes based on available ingredients. The recipes are stored in a JSON file.
 
