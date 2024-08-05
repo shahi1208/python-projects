@@ -2,8 +2,6 @@
 
 import json
 
-
-
 def user_choice():
     return input('\nWhat you wanna do now? (N or O)').strip().lower()
 
